@@ -65,7 +65,7 @@ namespace Encrypt
             {
                 char c = Word[i];
                 int cint = (int)c;
-                if(cint > 65 && cint < 90)
+                if(cint > 64 && cint < 91)
                 {
                     for (int x = 0; x < ALPH.Length; x++)
                     {
