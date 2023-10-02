@@ -15,26 +15,16 @@ namespace Encrypt
             Choice();
         }
         static string GetKey()
-        {
+        {        
+            Console.WriteLine("Machine Mode has been set");
+            Console.ReadKey();
+            Console.Clear();
             String Key = "";
-            bool loop = true;
-            while (loop)
-            {
-                loop = false;
-                Console.WriteLine("Write Your Key");
-                Key = Console.ReadLine().ToUpper();
-                for (int i = 0; i < Key.Length; i++)
-                {
-                    char c = Key[i];
-                    int check = (int)c;
-                    if(check < 65 || check > 90)
-                    {
-                        Console.WriteLine("only letters are allowed for the key");
-                        loop = true;
-                        break;
-                    }
-                }
-            }
+            Console.Write("What is the key you want to set? : ");
+            Key = Console.ReadLine().ToUpper();
+            Console.WriteLine("Cypher has been set");
+            Console.ReadKey();
+            Console.Clear();
             return Key;
         }
         static List<char> EncryptedALPH(char[] ALPH, String Key)
@@ -43,10 +33,14 @@ namespace Encrypt
             for (int i = 0; i < Key.Length; i++)
             {
                 char c = Key[i];
-                if (!ALPHABETTEMP.Contains(c))
+                int cint = (int)c;
+                if(cint > 64 && cint < 91)
                 {
-                    ALPHABETTEMP.Add(c);
-                }
+                    if (!ALPHABETTEMP.Contains(c))
+                    {
+                        ALPHABETTEMP.Add(c);
+                    }
+                }     
             }
             for (int i = 0; i < ALPH.Length; i++)
             {
@@ -81,6 +75,7 @@ namespace Encrypt
                     encword += c;
                 }
             }
+            
             return encword;
         }
         static string Decrypter(String Word, char[] ALPH, List<char> ALPHABET)
@@ -112,17 +107,16 @@ namespace Encrypt
         static void Choice()
         {
             Console.Clear();
-            Console.WriteLine("Type E to Encrypt and D to Decrypt");
+            Console.Write("Would you like to encrypt or decrypt a message? [E/D] : ");
             string choice = Console.ReadLine().ToUpper();
             switch (choice)
             {
-                case "E":
+                case "E":   
                     string Key = GetKey();
                     ALPHABET = EncryptedALPH(ALPH, Key);
-                    Console.WriteLine("write the word you want to encrypt");
+                    Console.WriteLine("Please input the message you want to encrypt:");
                     string Word = Console.ReadLine().ToUpper() ;
                     string final = encrypter(Word, ALPH, ALPHABET);
-                    Console.WriteLine(final);
                     Write(final);
                     Console.ReadKey();
                     break;
@@ -131,14 +125,11 @@ namespace Encrypt
                     ALPHABET = EncryptedALPH(ALPH, Key);
                     Word = Read();
                     final = Decrypter(Word, ALPH, ALPHABET);
-                    
-                    foreach (char c in ALPH)
-                        Console.Write(c + " ");
-                    Console.WriteLine();
-                    foreach (char c in ALPHABET)
-                        Console.Write(c + " ");
-
-                        Console.WriteLine(final);
+                    Console.WriteLine("Reading eMessage and decrypting using the provided key.");
+                    Console.WriteLine("The decrpyted message is:");
+                    Console.WriteLine(final);
+                    Console.WriteLine("Message has been succesfully decrypted.");
+                    Console.WriteLine("Press any key to close the program");
                     Console.ReadKey();
                     break;
                 default:
@@ -164,6 +155,8 @@ namespace Encrypt
             {
                 sw.Write(final);
             }
+            Console.WriteLine("Message has been successfuly encrypted and written to eMessage.txt");
+            Console.WriteLine("Press any key to continue");
         }
         static string Read()
         {
