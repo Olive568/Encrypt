@@ -172,7 +172,7 @@ namespace Encrypt
                     Choice();
                     break;
                 case "N":
-
+                    Console.WriteLine("Stopping program");
                     break;
                 default:
                     Console.WriteLine("Invalid input. stopping program");
