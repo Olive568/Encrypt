@@ -129,7 +129,7 @@ namespace Encrypt
                     Console.WriteLine("The decrpyted message is:");
                     Console.WriteLine(final);
                     Console.WriteLine("Message has been succesfully decrypted.");
-                    Console.WriteLine("Press any key to close the program");
+                    Console.WriteLine("Press any key to Continue");
                     Console.ReadKey();
                     break;
                 default:
@@ -137,21 +137,7 @@ namespace Encrypt
                     Console.ReadKey();
                     break;
             }
-            Console.Clear();
-            Console.WriteLine("do you want to continue? Y/N");
-            string a = Console.ReadLine().ToUpper();
-            switch (a)
-                {
-                case "Y":
-                    Choice();
-                    break;
-                case "N":
-
-                    break;
-                default:
-                    Console.WriteLine("Invalid input. stopping program");
-                    break; 
-            }
+            Continue();
         }
         static void Write(String final)
         {
@@ -174,6 +160,24 @@ namespace Encrypt
                 }
             }
             return total;
+        }
+        static void Continue()
+        {
+            Console.Clear();
+            Console.WriteLine("do you want to continue? Y/N");
+            string a = Console.ReadLine().ToUpper();
+            switch (a)
+            {
+                case "Y":
+                    Choice();
+                    break;
+                case "N":
+
+                    break;
+                default:
+                    Console.WriteLine("Invalid input. stopping program");
+                    break;
+            }
         }
     }
 }
