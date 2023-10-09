@@ -133,7 +133,8 @@ namespace Encrypt
                     Console.ReadKey();
                     break;
                 default:
-
+                    Console.WriteLine("Invalid input");
+                    Console.ReadKey();
                     break;
             }
             Console.Clear();
@@ -147,6 +148,9 @@ namespace Encrypt
                 case "N":
 
                     break;
+                default:
+                    Console.WriteLine("Invalid input. stopping program");
+                    break; 
             }
         }
         static void Write(String final)
